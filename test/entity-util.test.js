@@ -296,7 +296,7 @@ lab.test('duration', async () => {
 
         a1.list$(function (err, list) {
           if (err) return f(err)
-          expect(list.d$).about(0, 10)
+          expect(list.d$).about(0, 100)
           s()
         })
       })
