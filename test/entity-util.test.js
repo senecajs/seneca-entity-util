@@ -263,14 +263,13 @@ lab.test('when', async () => {
 lab.test('duration', async () => {
   const si = await Seneca({ legacy: false })
     .test()
-    .use('promisify')
-    .use('entity')
+    .use('@seneca/entity')
     .ready()
 
   // console.log(si.private$.translationrouter.toString())
   // console.log('===')
 
-  si.add('role:entity,cmd:save', function save_delay(msg, reply) {
+  si.add('sys:entity,cmd:save', function save_delay(msg, reply) {
     setTimeout(this.prior.bind(this, msg, reply), 500)
   })
 
@@ -463,8 +462,7 @@ function seneca_instance(config, plugin_options) {
     Seneca(config, { legacy: false })
       // .test('print')
       .test()
-      .use('promisify')
-      .use('entity')
+      .use('@seneca/entity')
       .use(EntityUtilPlugin, plugin_options)
   )
 }
